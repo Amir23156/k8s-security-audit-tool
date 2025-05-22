@@ -4,7 +4,27 @@ metadata:
   name: test-pod
 spec:
   containers:
-    - name: nginx
+    - name: insecure-container
       image: nginx
       securityContext:
         privileged: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: another-container
+          image: nginx
+          securityContext:
+            runAsNonRoot: false
