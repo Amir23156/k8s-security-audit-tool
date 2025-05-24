@@ -1,7 +1,7 @@
 import os
 import yaml
 from audit.rules import privileged_check, run_as_non_root_check  # Add more rules as you implement them
-
+from audit.rules import resources_limits_check 
 
 def load_manifests_from_dir(directory):
     yaml_files = []
@@ -28,6 +28,7 @@ def scan_file(file_path):
             # Apply rules
             issues += privileged_check(doc, file_path, name)
             issues += run_as_non_root_check(doc, file_path, name)
+            issues += resources_limits_check(doc, file_path, name)
 
     except Exception as e:
         issues.append({"file": file_path, "issue": f"Failed to parse: {str(e)}", "severity": "Error"})

@@ -1,3 +1,4 @@
+# Privileged container (will trigger privileged_check)
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,7 +9,12 @@ spec:
       image: nginx
       securityContext:
         privileged: true
+        runAsNonRoot: false  # will also trigger run_as_non_root_check
+      resources: {}  # will trigger resources_limits_check
+
 ---
+
+# runAsNonRoot false (deployment)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -28,3 +34,22 @@ spec:
           image: nginx
           securityContext:
             runAsNonRoot: false
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits: {}  # empty limits triggers resources_limits_check
+
+---
+
+# Missing resource limits entirely
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limitless-pod
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["sleep", "3600"]
+      resources: {}
