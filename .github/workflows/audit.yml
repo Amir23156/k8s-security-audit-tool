@@ -30,7 +30,7 @@ jobs:
           cat audit_report.md
 
       - name: Upload audit report artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: audit-report
           path: audit_report.md
