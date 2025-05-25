@@ -2,6 +2,7 @@ import os
 import yaml
 from audit.rules import privileged_check, run_as_non_root_check  # Add more rules as you implement them
 from audit.rules import resources_limits_check 
+from audit.rules import host_network_check
 
 def load_manifests_from_dir(directory):
     yaml_files = []
@@ -29,6 +30,7 @@ def scan_file(file_path):
             issues += privileged_check(doc, file_path, name)
             issues += run_as_non_root_check(doc, file_path, name)
             issues += resources_limits_check(doc, file_path, name)
+            issues += host_network_check(doc, file_path, name)
 
     except Exception as e:
         issues.append({"file": file_path, "issue": f"Failed to parse: {str(e)}", "severity": "Error"})
@@ -49,3 +51,18 @@ def print_report(issues):
         print("No security issues found.")
     for issue in issues:
         print(f"[{issue['severity']}] {issue['issue']} in {issue['file']} (resource: {issue['resource']})")
+        
+def print_markdown_report(issues):
+    if not issues:
+        print("No security issues found.")
+        return
+
+    print("| Severity | Issue | File | Resource |")
+    print("|----------|-------|------|----------|")
+    for issue in issues:
+        severity = issue.get("severity", "Unknown")
+        message = issue.get("issue", "Unknown")
+        file = issue.get("file", "Unknown")
+        resource = issue.get("resource", "Unknown")
+        print(f"| {severity} | {message} | {file} | {resource} |")
+

@@ -53,3 +53,16 @@ spec:
       image: busybox
       command: ["sleep", "3600"]
       resources: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-network-pod
+spec:
+  hostNetwork: true
+  containers:
+    - name: netcat
+      image: busybox
+      command: ["sleep", "3600"]
+
