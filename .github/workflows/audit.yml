@@ -23,6 +23,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pyyaml
-      - name: Run audit scanner
+      - name: Run audit scanner and save report
         run: |
-          python audit.py --dir manifests/ --output markdown
+          python audit.py --dir manifests/ --output markdown > audit_report.md
+          echo "### kubernetes Security Audit Report"
+          cat audit_report.md
+
+      - name: Upload audit report artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: audit-report
+          path: audit_report.md
