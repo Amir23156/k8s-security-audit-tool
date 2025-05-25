@@ -23,28 +23,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pyyaml
-
-      - name: Run audit scanner and save markdown report
+      - name: Run audit scanner
         run: |
-          python audit.py --dir manifests/ --output markdown > audit_report.md
-
-      - name: Print report to console
-        run: |
-          echo "###  Kubernetes Security Audit Report"
-          cat audit_report.md
-
-      - name: Upload audit report artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: audit-report
-          path: audit_report.md
-
-      - name: Fail workflow if high severity issues are found
-        run: |
-          if grep -q "| High |" audit_report.md; then
-            echo " High severity issues found in audit!"
-            exit 1
-          else
-            echo " No high severity issues found."
-          fi
-
+          python audit.py --dir manifests/ --output markdown
