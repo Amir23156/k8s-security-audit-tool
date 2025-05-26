@@ -4,11 +4,6 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -42,4 +37,3 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           force_orphan: true
-## trying again
