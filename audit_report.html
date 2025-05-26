@@ -1,0 +1,78 @@
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 18%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Severity</th>
+<th>Issue</th>
+<th>File</th>
+<th>Resource</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High</td>
+<td>Privileged container is enabled</td>
+<td>manifests/insecure.yaml</td>
+<td>test-pod</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>Container is not configured to run as non-root</td>
+<td>manifests/insecure.yaml</td>
+<td>test-pod</td>
+</tr>
+<tr class="odd">
+<td>Medium</td>
+<td>Missing CPU or memory resource limits</td>
+<td>manifests/insecure.yaml</td>
+<td>test-pod</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>Container is not configured to run as non-root</td>
+<td>manifests/insecure.yaml</td>
+<td>test-deployment</td>
+</tr>
+<tr class="odd">
+<td>Medium</td>
+<td>Missing CPU or memory resource limits</td>
+<td>manifests/insecure.yaml</td>
+<td>test-deployment</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>Container is not configured to run as non-root</td>
+<td>manifests/insecure.yaml</td>
+<td>limitless-pod</td>
+</tr>
+<tr class="odd">
+<td>Medium</td>
+<td>Missing CPU or memory resource limits</td>
+<td>manifests/insecure.yaml</td>
+<td>limitless-pod</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>Container is not configured to run as non-root</td>
+<td>manifests/insecure.yaml</td>
+<td>host-network-pod</td>
+</tr>
+<tr class="odd">
+<td>Medium</td>
+<td>Missing CPU or memory resource limits</td>
+<td>manifests/insecure.yaml</td>
+<td>host-network-pod</td>
+</tr>
+<tr class="even">
+<td>High</td>
+<td>hostNetwork is enabled (container shares host network stack)</td>
+<td>manifests/insecure.yaml</td>
+<td>host-network-pod</td>
+</tr>
+</tbody>
+</table>

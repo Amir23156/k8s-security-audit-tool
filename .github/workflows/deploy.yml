@@ -27,7 +27,7 @@ jobs:
       - name: Run audit and convert to HTML
         run: |
           python audit.py --dir manifests/ --output markdown > audit_report.md
-          pandoc audit_report.md -o audit_report.html
+          pandoc audit_report.md -o index.html
 
 
       - name: Deploy to gh-pages branch
