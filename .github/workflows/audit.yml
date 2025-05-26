@@ -28,3 +28,26 @@ jobs:
           python audit.py --dir manifests/ --output markdown > audit_report.md
           echo "### kubernetes Security Audit Report"
           cat audit_report.md
+
+
+      - name: Fail workflow if high severity issues are found
+        run: |
+          if grep -q "| High |" audit_report.md; then
+            echo "High severity issues found in audit!"
+            exit 1
+          else
+            echo "No High severity issues found."
+          fi
+
+
+      - name: Run Bandit (Python SAST)
+        run: |
+          echo "### Bandit Report"
+          bandit -r . -f markdown -o bandit_report.md || true
+          cat bandit_report.md
+
+
+      - name: Check dependencies for known vulnerabilities
+        run: |
+          echo "### pip audit Report"
+          pip-audit || true
