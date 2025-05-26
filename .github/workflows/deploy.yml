@@ -24,11 +24,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc
 
+      - name: Run audit via Docker
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/manifests:/app/manifests \
+            amir23156/k8s-audit-tool:latest \
+            --dir manifests/ --output markdown > audit_report.md
+
       - name: Run audit and convert to HTML
         run: |
           python audit.py --dir manifests/ --output markdown > audit_report.md
           pandoc audit_report.md -o index.html --standalone --css=https://cdn.simplecss.org/simple.min.css
-
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
