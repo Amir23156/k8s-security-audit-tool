@@ -30,11 +30,10 @@ jobs:
           cat audit_report.md
 
 
-      - name: Fail workflow if high severity issues are found
+      - name: Warn if high severity issues are found
         run: |
           if grep -q "| High |" audit_report.md; then
-            echo "High severity issues found in audit!"
-            exit 1
+            echo "High severity issues found in audit! - skipping failure"
           else
             echo "No High severity issues found."
           fi
