@@ -1,40 +1,41 @@
 # Kubernetes Security Audit Tool
-![Audit CI](https://github.com/Amir23156/k8s-security-audit-tool/actions/workflows/audit.yml/badge.svg)
 
+A lightweight command-line tool that scans Kubernetes YAML manifests for common security misconfigurations.  
+Built for local use, CI/CD pipelines, and educational DevSecOps workflows.
 
-A lightweight command-line tool that scans Kubernetes YAML manifests for **common security misconfigurations**.  
-Inspired by tools like [MKAT](https://github.com/datadog/managed-kubernetes-auditing-tool), but built for **local audits**, **learning**, and easy integration into **DevSecOps pipelines**.
+---
 
+##  Features
 
+-  Detects:
+  - Privileged containers
+  - Missing resource limits
+  - Run-as-root containers
+  - hostNetwork usage
+  - NodePort services
+  - hostPath volumes
+-  Outputs: text, JSON, Markdown, and HTML
+-  CI integrated (GitHub Actions)
+-  Live audit report via [GitHub Pages](https://amir23156.github.io/k8s-security-audit-tool/)
+-  [Dockerized version](https://hub.docker.com/r/amir23156/k8s-audit-tool) for easy use anywhere
 
-## Features
+---
 
-**Scans Kubernetes YAML or Helm manifests**  
-**Detects common security issues**, including:
+## Run with Docker
 
-- **Privileged containers**
-- **Missing CPU or memory resource limits**
-- **Containers not configured to run as non-root**
-- **Use of hostPath volumes**
-- **Services of type NodePort**
-- **hostNetwork enabled**
+```bash
+docker run --rm -v $(pwd)/manifests:/app/manifests amir23156/k8s-audit-tool:latest --dir manifests/ --output markdown
+```
 
-**CI/CD Ready**
-- Fully integrated with **GitHub Actions** CI pipeline  
-- Fails pipeline on **high severity** issues
-- Generates audit reports in:
-  -  **Markdown** (for readability)
-  -  **HTML** (for GitHub Pages publishing)
+---
 
- **GitHub Pages Deployment**
-- Latest security audit reports are **automatically published** to [GitHub Pages](https://amir23156.github.io/k8s-security-audit-tool)
+## Example Report
 
- **Fast & Extensible**
-- Modular rule engine makes it easy to add more checks
-- Works locally without external dependencies beyond `pyyaml` and `pandoc`
+![screenshot](https://amir23156.github.io/k8s-security-audit-tool/screenshot.png)
 
+---
 
-## Getting Started
+## Local Setup
 
 ```bash
 git clone https://github.com/Amir23156/k8s-security-audit-tool.git
@@ -43,4 +44,45 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python audit.py --dir manifests/ --output text
+```
 
+---
+
+## GitHub Actions Workflow
+
+- Automatically runs audit on push
+- Builds report in Markdown and HTML
+- Publishes latest audit to GitHub Pages
+- Optionally deploys a Docker image
+
+---
+
+## Docker Build (for development)
+
+```bash
+docker build -t k8s-audit-tool .
+```
+
+```bash
+docker run --rm -v $(pwd)/manifests:/app/manifests k8s-audit-tool --dir manifests/ --output markdown
+```
+
+---
+
+## GitHub Badges
+
+[![CI](https://github.com/Amir23156/k8s-security-audit-tool/actions/workflows/deploy.yml/badge.svg)](https://github.com/Amir23156/k8s-security-audit-tool/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/amir23156/k8s-audit-tool)](https://hub.docker.com/r/amir23156/k8s-audit-tool)
+[![Live Report](https://img.shields.io/badge/report-live-blue)](https://amir23156.github.io/k8s-security-audit-tool/)
+
+---
+
+## Author
+
+Made with Love by [Amir23156](https://github.com/Amir23156)
+
+---
+
+##  Topics
+
+`kubernetes` • `security` • `devsecops` • `docker` • `ci-cd` • `yaml` • `cloud-native`
