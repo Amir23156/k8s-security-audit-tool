@@ -1,12 +1,11 @@
 # Kubernetes Security Audit Tool
 ![Audit CI](https://github.com/Amir23156/k8s-security-audit-tool/actions/workflows/audit.yml/badge.svg)
 
-# Kubernetes Security Audit Tool
 
 A lightweight command-line tool that scans Kubernetes YAML manifests for **common security misconfigurations**.  
 Inspired by tools like [MKAT](https://github.com/datadog/managed-kubernetes-auditing-tool), but built for **local audits**, **learning**, and easy integration into **DevSecOps pipelines**.
 
----
+
 
 ## Features
 
@@ -34,7 +33,6 @@ Inspired by tools like [MKAT](https://github.com/datadog/managed-kubernetes-audi
 - Modular rule engine makes it easy to add more checks
 - Works locally without external dependencies beyond `pyyaml` and `pandoc`
 
----
 
 ## Getting Started
 
