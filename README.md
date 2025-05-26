@@ -31,7 +31,8 @@ docker run --rm -v $(pwd)/manifests:/app/manifests amir23156/k8s-audit-tool:late
 
 ## Example Report
 
-![screenshot](https://amir23156.github.io/k8s-security-audit-tool/screenshot.png)
+![image](https://github.com/user-attachments/assets/8d40db02-337f-4b81-a72c-f9a87d1f2682)
+
 
 ---
 
