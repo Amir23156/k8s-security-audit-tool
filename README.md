@@ -7,7 +7,7 @@ Built for local use, CI/CD pipelines, and educational DevSecOps workflows.
 
 ##  Features
 
--  Detects:
+- Detects:
   - Privileged containers
   - Missing resource limits
   - Run-as-root containers
