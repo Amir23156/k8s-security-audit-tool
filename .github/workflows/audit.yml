@@ -46,8 +46,8 @@ jobs:
       - name: Run Bandit (Python SAST)
         run: |
           echo "### Bandit Report"
-          bandit -r . -f markdown -o bandit_report.md || true
-          cat bandit_report.md || echo "No report generated."
+          bandit -r . -f markdown -o bandit_report.txt || true
+          cat bandit_report.txt || echo "No report generated."
 
 
       - name: Check dependencies for known vulnerabilities
